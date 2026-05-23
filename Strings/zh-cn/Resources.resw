@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="SetupIntro.Text" xml:space="preserve">
+    <value>Strinova 回放管理器需要获得在您的 Demos 文件夹中创建符号链接的权限。请启用开发者模式或以管理员身份重新启动。</value>
+  </data>
+  <data name="SetupOpenDevSettingsButton.Content" xml:space="preserve">
+    <value>打开开发者设置</value>
+  </data>
+  <data name="SetupRestartAdminButton.Content" xml:space="preserve">
+    <value>以管理员身份重新启动</value>
+  </data>
+  <data name="SetupRetryButton.Content" xml:space="preserve">
+    <value>重试</value>
+  </data>
+  <data name="SetupAlwaysElevateCheckbox.Content" xml:space="preserve">
+    <value>启动时始终以管理员身份运行</value>
+  </data>
+  <data name="SetupViewOnlyButton.Content" xml:space="preserve">
+    <value>以仅查看模式继续</value>
+  </data>
+  <data name="MainRemapButton.Label" xml:space="preserve">
+    <value>重新映射所选</value>
+  </data>
+  <data name="MainImportButton.Label" xml:space="preserve">
+    <value>导入回放</value>
+  </data>
+  <data name="MainSaveAsButton.Label" xml:space="preserve">
+    <value>另存为…</value>
+  </data>
+  <data name="MainCopyReplayButton.Label" xml:space="preserve">
+    <value>复制回放</value>
+  </data>
+  <data name="MainRefreshButton.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>刷新列表</value>
+  </data>
+  <data name="MainDeleteSlotButton.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>删除槽位</value>
+  </data>
+  <data name="MainDeleteSlotButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>删除槽位</value>
+  </data>
+  <data name="MainDeleteOriginalButton.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>删除库项目</value>
+  </data>
+  <data name="MainDeleteOriginalButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>删除库项目</value>
+  </data>
+  <data name="MainMappedHeader.Text" xml:space="preserve">
+    <value>已映射的回放（最新在前）</value>
+  </data>
+  <data name="MainOriginalsHeader.Text" xml:space="preserve">
+    <value>原始库 — 选择以保存或复制</value>
+  </data>
+  <data name="MainColumnSlotGroup.Text" xml:space="preserve">
+    <value>槽位（游戏内）</value>
+  </data>
+  <data name="MainColumnMappedGroup.Text" xml:space="preserve">
+    <value>指向</value>
+  </data>
+  <data name="MainColumnTime.Text" xml:space="preserve">
+    <value>时间</value>
+  </data>
+  <data name="MainColumnMatchId.Text" xml:space="preserve">
+    <value>比赛 ID</value>
+  </data>
+  <data name="MainColumnVersion.Text" xml:space="preserve">
+    <value>版本</value>
+  </data>
+  <data name="MainColumnUserId.Text" xml:space="preserve">
+    <value>用户 ID</value>
+  </data>
+  <data name="MainColumnMappedMatch.Text" xml:space="preserve">
+    <value>映射的比赛</value>
+  </data>
+  <data name="MainColumnMappedTime.Text" xml:space="preserve">
+    <value>映射时间</value>
+  </data>
+  <data name="MainColumnImported.Text" xml:space="preserve">
+    <value>导入时间</value>
+  </data>
+  <data name="RemapSlotSummaryLabel.Text" xml:space="preserve">
+    <value>槽位</value>
+  </data>
+  <data name="RemapMappedSummaryLabel.Text" xml:space="preserve">
+    <value>当前指向</value>
+  </data>
+  <data name="RemapTargetHeader.Text" xml:space="preserve">
+    <value>从原始库中选择新目标</value>
+  </data>
+  <data name="RemapApplyButton.Label" xml:space="preserve">
+    <value>应用</value>
+  </data>
+  <data name="RemapCancelButton.Label" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="Message_SetupIntro" xml:space="preserve">
+    <value>Strinova 回放管理器需要获得在您的 Demos 文件夹中创建符号链接的权限。请启用开发者模式或以管理员身份重新启动。</value>
+  </data>
+  <data name="Message_SetupOpenedDevSettings" xml:space="preserve">
+    <value>已打开开发者设置。请启用开发者模式，然后选择重试。</value>
+  </data>
+  <data name="Message_SetupElevationFailed" xml:space="preserve">
+    <value>无法以管理员权限重新启动。</value>
+  </data>
+  <data name="Message_SetupProbing" xml:space="preserve">
+    <value>正在检查符号链接权限…</value>
+  </data>
+  <data name="Message_SetupProbeFailed" xml:space="preserve">
+    <value>符号链接仍不可用。请启用开发者模式或以管理员身份重新启动，然后重试。</value>
+  </data>
+  <data name="Message_MainViewOnlyStatus" xml:space="preserve">
+    <value>仅查看模式：选择原始回放以保存或复制。在设置中启用符号链接以使用完整模式。</value>
+  </data>
+  <data name="Message_MainFullModeStatus" xml:space="preserve">
+    <value>完整模式：选择原始回放以保存或复制；选择已映射槽位以重新映射。</value>
+  </data>
+  <data name="Message_MainViewOnlyImport" xml:space="preserve">
+    <value>导入需要支持符号链接的完整模式。</value>
+  </data>
+  <data name="Message_IngestStatus" xml:space="preserve">
+    <value>已整理回放：移动 {0} 个，链接 {1} 个。</value>
+  </data>
+  <data name="Message_ImportSuccessHint" xml:space="preserve">
+    <value>回放已导入原始库。重新映射游戏回放槽位即可在游戏中使用。</value>
+  </data>
+  <data name="Message_ImportUnparsedSuccess" xml:space="preserve">
+    <value>回放已导入原始库。无法解析其文件名；将仅显示文件名。</value>
+  </data>
+  <data name="Message_ImportCollisionError" xml:space="preserve">
+    <value>原始库中已存在同名文件。</value>
+  </data>
+  <data name="Message_ImportInvalidNameError" xml:space="preserve">
+    <value>导入的文件名无法解析为有效的回放。</value>
+  </data>
+  <data name="Message_ExportSuccess" xml:space="preserve">
+    <value>已导出 {0}。</value>
+  </data>
+  <data name="Message_ExportCancelled" xml:space="preserve">
+    <value>已取消导出。</value>
+  </data>
+  <data name="Message_ExportFailed" xml:space="preserve">
+    <value>导出失败。</value>
+  </data>
+  <data name="Message_ClipboardSuccess" xml:space="preserve">
+    <value>已将 {0} 复制到剪贴板。</value>
+  </data>
+  <data name="Message_ClipboardFailed" xml:space="preserve">
+    <value>无法将回放复制到剪贴板。</value>
+  </data>
+  <data name="Message_RemapSlotSummary" xml:space="preserve">
+    <value>{0} · {1}</value>
+  </data>
+  <data name="Message_RemapMappedSummary" xml:space="preserve">
+    <value>{0} · {1}</value>
+  </data>
+  <data name="Message_RemapContext" xml:space="preserve">
+    <value>重新映射槽位 {0}。当前指向 {1}。</value>
+  </data>
+  <data name="Message_RemapSelectTarget" xml:space="preserve">
+    <value>请从原始库中选择一个回放。</value>
+  </data>
+  <data name="Message_RemapSuccess" xml:space="preserve">
+    <value>槽位 {0} 现已指向 {1}。</value>
+  </data>
+  <data name="Message_RemapFailed" xml:space="preserve">
+    <value>重新映射失败：{0}</value>
+  </data>
+  <data name="Message_GameRunningRemapWarning" xml:space="preserve">
+    <value>Strinova 正在运行。重新映射正在使用的回放槽位可能导致崩溃或其他问题。</value>
+  </data>
+  <data name="Message_GameRunningRemapConfirmTitle" xml:space="preserve">
+    <value>Strinova 正在运行</value>
+  </data>
+  <data name="Message_GameRunningRemapConfirm" xml:space="preserve">
+    <value>在 Strinova 运行时重新映射回放槽位可能导致崩溃或其他问题。仍要重新映射吗？</value>
+  </data>
+  <data name="Message_DeleteSlotConfirmTitle" xml:space="preserve">
+    <value>删除槽位？</value>
+  </data>
+  <data name="Message_DeleteSlotConfirm" xml:space="preserve">
+    <value>删除此槽位？原始回放不会被删除。您可以将其重新映射到其他槽位。如果通过游戏客户端再次下载该回放，槽位将被重新创建，重复项会导入原始库。</value>
+  </data>
+  <data name="Message_DeleteOriginalConfirmTitle" xml:space="preserve">
+    <value>从原始库中删除？</value>
+  </data>
+  <data name="Message_DeleteOriginalConfirm" xml:space="preserve">
+    <value>旧回放无法重新下载。删除是永久性的。确定要从原始库中删除此回放吗？</value>
+  </data>
+  <data name="DialogDeleteButtonText" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="DialogCancelButtonText" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="DialogProceedButtonText" xml:space="preserve">
+    <value>仍要重新映射</value>
+  </data>
+  <data name="Message_DeleteSlotSuccess" xml:space="preserve">
+    <value>已删除槽位 {0}。</value>
+  </data>
+  <data name="Message_DeleteOriginalSuccess" xml:space="preserve">
+    <value>已删除库项目 {0}。</value>
+  </data>
+  <data name="Message_DeleteFailed" xml:space="preserve">
+    <value>删除失败：{0}</value>
+  </data>
+</root>

@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "StrinovaReplayManager (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "StrinovaReplayManager (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

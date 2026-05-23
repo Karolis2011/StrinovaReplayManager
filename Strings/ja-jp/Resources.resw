@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="SetupIntro.Text" xml:space="preserve">
+    <value>Strinova Replay Manager は、Demos フォルダーにシンボリックリンクを作成する権限が必要です。開発者モードを有効にするか、管理者として再起動してください。</value>
+  </data>
+  <data name="SetupOpenDevSettingsButton.Content" xml:space="preserve">
+    <value>開発者設定を開く</value>
+  </data>
+  <data name="SetupRestartAdminButton.Content" xml:space="preserve">
+    <value>管理者として再起動</value>
+  </data>
+  <data name="SetupRetryButton.Content" xml:space="preserve">
+    <value>再試行</value>
+  </data>
+  <data name="SetupAlwaysElevateCheckbox.Content" xml:space="preserve">
+    <value>起動時に常に管理者権限を要求する</value>
+  </data>
+  <data name="SetupViewOnlyButton.Content" xml:space="preserve">
+    <value>表示のみで続行</value>
+  </data>
+  <data name="MainRemapButton.Label" xml:space="preserve">
+    <value>選択項目をリマップ</value>
+  </data>
+  <data name="MainImportButton.Label" xml:space="preserve">
+    <value>リプレイをインポート</value>
+  </data>
+  <data name="MainSaveAsButton.Label" xml:space="preserve">
+    <value>名前を付けて保存…</value>
+  </data>
+  <data name="MainCopyReplayButton.Label" xml:space="preserve">
+    <value>リプレイをコピー</value>
+  </data>
+  <data name="MainRefreshButton.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>リストを更新</value>
+  </data>
+  <data name="MainDeleteSlotButton.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>スロットを削除</value>
+  </data>
+  <data name="MainDeleteSlotButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>スロットを削除</value>
+  </data>
+  <data name="MainDeleteOriginalButton.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>ライブラリ項目を削除</value>
+  </data>
+  <data name="MainDeleteOriginalButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>ライブラリ項目を削除</value>
+  </data>
+  <data name="MainMappedHeader.Text" xml:space="preserve">
+    <value>マップ済みリプレイ（新しい順）</value>
+  </data>
+  <data name="MainOriginalsHeader.Text" xml:space="preserve">
+    <value>オリジナルライブラリ — 保存またはコピーする項目を選択</value>
+  </data>
+  <data name="MainColumnSlotGroup.Text" xml:space="preserve">
+    <value>スロット（ゲーム内）</value>
+  </data>
+  <data name="MainColumnMappedGroup.Text" xml:space="preserve">
+    <value>リンク先</value>
+  </data>
+  <data name="MainColumnTime.Text" xml:space="preserve">
+    <value>時刻</value>
+  </data>
+  <data name="MainColumnMatchId.Text" xml:space="preserve">
+    <value>マッチ ID</value>
+  </data>
+  <data name="MainColumnVersion.Text" xml:space="preserve">
+    <value>バージョン</value>
+  </data>
+  <data name="MainColumnUserId.Text" xml:space="preserve">
+    <value>ユーザー ID</value>
+  </data>
+  <data name="MainColumnMappedMatch.Text" xml:space="preserve">
+    <value>マップ済みマッチ</value>
+  </data>
+  <data name="MainColumnMappedTime.Text" xml:space="preserve">
+    <value>マップ時刻</value>
+  </data>
+  <data name="MainColumnImported.Text" xml:space="preserve">
+    <value>インポート</value>
+  </data>
+  <data name="RemapSlotSummaryLabel.Text" xml:space="preserve">
+    <value>スロット</value>
+  </data>
+  <data name="RemapMappedSummaryLabel.Text" xml:space="preserve">
+    <value>現在のリンク先</value>
+  </data>
+  <data name="RemapTargetHeader.Text" xml:space="preserve">
+    <value>オリジナルライブラリから新しいリンク先を選択</value>
+  </data>
+  <data name="RemapApplyButton.Label" xml:space="preserve">
+    <value>適用</value>
+  </data>
+  <data name="RemapCancelButton.Label" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="Message_SetupIntro" xml:space="preserve">
+    <value>Strinova Replay Manager は、Demos フォルダーにシンボリックリンクを作成する権限が必要です。開発者モードを有効にするか、管理者として再起動してください。</value>
+  </data>
+  <data name="Message_SetupOpenedDevSettings" xml:space="preserve">
+    <value>開発者設定を開きました。開発者モードを有効にしてから、再試行を選択してください。</value>
+  </data>
+  <data name="Message_SetupElevationFailed" xml:space="preserve">
+    <value>管理者権限で再起動できませんでした。</value>
+  </data>
+  <data name="Message_SetupProbing" xml:space="preserve">
+    <value>シンボリックリンクの権限を確認しています…</value>
+  </data>
+  <data name="Message_SetupProbeFailed" xml:space="preserve">
+    <value>シンボリックリンクはまだ利用できません。開発者モードを有効にするか、管理者として再起動してから再試行してください。</value>
+  </data>
+  <data name="Message_MainViewOnlyStatus" xml:space="preserve">
+    <value>表示のみ：オリジナルを選択して保存またはコピーできます。フルモードには設定でシンボリックリンクを有効にしてください。</value>
+  </data>
+  <data name="Message_MainFullModeStatus" xml:space="preserve">
+    <value>フルモード：オリジナルを選択して保存またはコピー；マップ済みスロットを選択してリマップできます。</value>
+  </data>
+  <data name="Message_MainViewOnlyImport" xml:space="preserve">
+    <value>インポートにはシンボリックリンク対応のフルモードが必要です。</value>
+  </data>
+  <data name="Message_IngestStatus" xml:space="preserve">
+    <value>リプレイを整理しました：{0} 件移動、{1} 件リンク。</value>
+  </data>
+  <data name="Message_ImportSuccessHint" xml:space="preserve">
+    <value>リプレイをオリジナルライブラリにインポートしました。ゲーム内で使用するにはリプレイスロットをリマップしてください。</value>
+  </data>
+  <data name="Message_ImportUnparsedSuccess" xml:space="preserve">
+    <value>リプレイをオリジナルライブラリにインポートしました。ファイル名を解析できなかったため、ファイル名のみ表示されます。</value>
+  </data>
+  <data name="Message_ImportCollisionError" xml:space="preserve">
+    <value>オリジナルライブラリに同名のファイルが既に存在します。</value>
+  </data>
+  <data name="Message_ImportInvalidNameError" xml:space="preserve">
+    <value>インポートしたファイル名を有効なリプレイとして解析できませんでした。</value>
+  </data>
+  <data name="Message_ExportSuccess" xml:space="preserve">
+    <value>{0} をエクスポートしました。</value>
+  </data>
+  <data name="Message_ExportCancelled" xml:space="preserve">
+    <value>エクスポートをキャンセルしました。</value>
+  </data>
+  <data name="Message_ExportFailed" xml:space="preserve">
+    <value>エクスポートに失敗しました。</value>
+  </data>
+  <data name="Message_ClipboardSuccess" xml:space="preserve">
+    <value>{0} をクリップボードにコピーしました。</value>
+  </data>
+  <data name="Message_ClipboardFailed" xml:space="preserve">
+    <value>リプレイをクリップボードにコピーできませんでした。</value>
+  </data>
+  <data name="Message_RemapSlotSummary" xml:space="preserve">
+    <value>{0} · {1}</value>
+  </data>
+  <data name="Message_RemapMappedSummary" xml:space="preserve">
+    <value>{0} · {1}</value>
+  </data>
+  <data name="Message_RemapContext" xml:space="preserve">
+    <value>スロット {0} をリマップします。現在のリンク先：{1}。</value>
+  </data>
+  <data name="Message_RemapSelectTarget" xml:space="preserve">
+    <value>オリジナルライブラリからリプレイを選択してください。</value>
+  </data>
+  <data name="Message_RemapSuccess" xml:space="preserve">
+    <value>スロット {0} は {1} を指すようになりました。</value>
+  </data>
+  <data name="Message_RemapFailed" xml:space="preserve">
+    <value>リマップに失敗しました：{0}</value>
+  </data>
+  <data name="Message_GameRunningRemapWarning" xml:space="preserve">
+    <value>Strinova が実行中です。使用中のリプレイスロットをリマップすると、クラッシュなどの問題が発生する可能性があります。</value>
+  </data>
+  <data name="Message_GameRunningRemapConfirmTitle" xml:space="preserve">
+    <value>Strinova が実行中です</value>
+  </data>
+  <data name="Message_GameRunningRemapConfirm" xml:space="preserve">
+    <value>Strinova 実行中にリプレイスロットをリマップすると、クラッシュなどの問題が発生する可能性があります。それでもリマップしますか？</value>
+  </data>
+  <data name="Message_DeleteSlotConfirmTitle" xml:space="preserve">
+    <value>スロットを削除しますか？</value>
+  </data>
+  <data name="Message_DeleteSlotConfirm" xml:space="preserve">
+    <value>このスロットを削除しますか？オリジナルのリプレイは削除されません。別のスロットにリマップできます。ゲームクライアントで再度ダウンロードすると、スロットが再作成され、重複がオリジナルライブラリにインポートされます。</value>
+  </data>
+  <data name="Message_DeleteOriginalConfirmTitle" xml:space="preserve">
+    <value>オリジナルライブラリから削除しますか？</value>
+  </data>
+  <data name="Message_DeleteOriginalConfirm" xml:space="preserve">
+    <value>古いリプレイは再ダウンロードできません。削除は元に戻せません。このリプレイをオリジナルライブラリから削除しますか？</value>
+  </data>
+  <data name="DialogDeleteButtonText" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="DialogCancelButtonText" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="DialogProceedButtonText" xml:space="preserve">
+    <value>それでもリマップ</value>
+  </data>
+  <data name="Message_DeleteSlotSuccess" xml:space="preserve">
+    <value>スロット {0} を削除しました。</value>
+  </data>
+  <data name="Message_DeleteOriginalSuccess" xml:space="preserve">
+    <value>ライブラリ項目 {0} を削除しました。</value>
+  </data>
+  <data name="Message_DeleteFailed" xml:space="preserve">
+    <value>削除に失敗しました：{0}</value>
+  </data>
+</root>

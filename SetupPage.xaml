@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="StrinovaReplayManager.Views.SetupPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <ScrollViewer Padding="32">
+        <StackPanel Spacing="16" MaxWidth="720">
+            <TextBlock
+                x:Uid="SetupIntro"
+                TextWrapping="WrapWholeWords"
+                Style="{ThemeResource SubtitleTextBlockStyle}" />
+            <TextBlock
+                Text="{x:Bind ViewModel.StatusMessage, Mode=OneWay}"
+                TextWrapping="WrapWholeWords" />
+            <Button
+                x:Uid="SetupOpenDevSettingsButton"
+                Command="{x:Bind ViewModel.OpenDeveloperSettingsCommand}" />
+            <Button
+                x:Uid="SetupRestartAdminButton"
+                Command="{x:Bind ViewModel.RestartAsAdminCommand}" />
+            <Button
+                x:Uid="SetupRetryButton"
+                Command="{x:Bind ViewModel.RetryCommand}" />
+            <CheckBox
+                x:Uid="SetupAlwaysElevateCheckbox"
+                IsChecked="{x:Bind ViewModel.AlwaysElevate, Mode=TwoWay}"
+                Visibility="{x:Bind ViewModel.ShowAlwaysElevateOption, Mode=OneWay}" />
+            <Button
+                x:Uid="SetupViewOnlyButton"
+                Command="{x:Bind ViewModel.ContinueViewOnlyCommand}" />
+        </StackPanel>
+    </ScrollViewer>
+</Page>
+

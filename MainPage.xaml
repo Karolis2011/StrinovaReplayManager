@@ -1,0 +1,592 @@
+<Page
+
+    x:Class="StrinovaReplayManager.Views.MainPage"
+
+    x:Name="RootPage"
+
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+
+    xmlns:models="using:StrinovaReplayManager.Models"
+
+    xmlns:helpers="using:StrinovaReplayManager.Helpers"
+
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+
+    mc:Ignorable="d">
+
+
+
+    <Grid Padding="24" RowSpacing="12">
+
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="Auto" />
+
+            <RowDefinition Height="Auto" />
+
+            <RowDefinition Height="*" />
+
+            <RowDefinition Height="Auto" />
+
+            <RowDefinition Height="*" />
+
+            <RowDefinition Height="Auto" />
+
+        </Grid.RowDefinitions>
+
+
+
+        <CommandBar
+
+            Grid.Row="0"
+
+            DefaultLabelPosition="Right"
+
+            Background="Transparent">
+
+            <AppBarButton
+
+                x:Uid="MainImportButton"
+
+                Icon="OpenFile"
+
+                Command="{x:Bind ViewModel.ImportCommand}"
+
+                IsEnabled="{x:Bind ViewModel.IsFullMode, Mode=OneWay}" />
+
+            <AppBarButton
+
+                x:Uid="MainSaveAsButton"
+
+                Icon="Save"
+
+                Command="{x:Bind ViewModel.SaveAsCommand}"
+
+                IsEnabled="{x:Bind ViewModel.CanSaveAs, Mode=OneWay}" />
+
+            <AppBarButton
+
+                x:Uid="MainCopyReplayButton"
+
+                Icon="Copy"
+
+                Command="{x:Bind ViewModel.CopyReplayCommand}"
+
+                IsEnabled="{x:Bind ViewModel.CanCopyReplay, Mode=OneWay}" />
+
+            <AppBarButton
+
+                x:Uid="MainRemapButton"
+
+                Icon="Link"
+
+                Command="{x:Bind ViewModel.RemapSelectedCommand}"
+
+                IsEnabled="{x:Bind ViewModel.CanRemap, Mode=OneWay}" />
+
+            <AppBarButton
+
+                x:Uid="MainRefreshButton"
+
+                Icon="Refresh"
+
+                Command="{x:Bind ViewModel.RefreshListCommand}" />
+
+        </CommandBar>
+
+
+
+        <TextBlock
+
+            Grid.Row="1"
+
+            x:Uid="MainMappedHeader"
+
+            Style="{ThemeResource BodyStrongTextBlockStyle}" />
+
+
+
+        <Border Grid.Row="2" Style="{StaticResource FluentReplayCardBorderStyle}">
+
+            <Grid>
+
+                <Grid.RowDefinitions>
+
+                    <RowDefinition Height="Auto" />
+
+                    <RowDefinition Height="Auto" />
+
+                    <RowDefinition Height="*" />
+
+                </Grid.RowDefinitions>
+
+
+
+                <Grid Grid.Row="0" Style="{StaticResource FluentReplayColumnHeaderPanelStyle}">
+
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="{StaticResource ReplayColTimeWidth}" />
+
+                        <ColumnDefinition Width="{StaticResource ReplayColSlotMatchIdWidth}" />
+
+                        <ColumnDefinition Width="{StaticResource ReplayColSlotVersionWidth}" />
+
+                        <ColumnDefinition Width="{StaticResource ReplayColTimeWidth}" />
+
+                        <ColumnDefinition Width="{StaticResource ReplayColSlotMatchIdWidth}" />
+
+                        <ColumnDefinition Width="{StaticResource ReplayColUserIdWidth}" />
+
+                        <ColumnDefinition Width="{StaticResource ReplayColActionWidth}" />
+
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock
+
+                        Grid.Column="0"
+
+                        Grid.ColumnSpan="3"
+
+                        x:Uid="MainColumnSlotGroup"
+
+                        Style="{ThemeResource CaptionTextBlockStyle}" />
+
+                    <TextBlock
+
+                        Grid.Column="3"
+
+                        Grid.ColumnSpan="3"
+
+                        x:Uid="MainColumnMappedGroup"
+
+                        Style="{ThemeResource CaptionTextBlockStyle}" />
+
+                </Grid>
+
+
+
+                <Grid Grid.Row="1" Style="{StaticResource FluentReplayColumnHeaderPanelStyle}">
+
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="{StaticResource ReplayColTimeWidth}" />
+
+                        <ColumnDefinition Width="{StaticResource ReplayColSlotMatchIdWidth}" />
+
+                        <ColumnDefinition Width="{StaticResource ReplayColSlotVersionWidth}" />
+
+                        <ColumnDefinition Width="{StaticResource ReplayColTimeWidth}" />
+
+                        <ColumnDefinition Width="{StaticResource ReplayColSlotMatchIdWidth}" />
+
+                        <ColumnDefinition Width="{StaticResource ReplayColUserIdWidth}" />
+
+                        <ColumnDefinition Width="{StaticResource ReplayColActionWidth}" />
+
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" x:Uid="MainColumnTime" Style="{ThemeResource CaptionTextBlockStyle}" />
+
+                    <TextBlock Grid.Column="1" x:Uid="MainColumnMatchId" Style="{ThemeResource CaptionTextBlockStyle}" />
+
+                    <TextBlock Grid.Column="2" x:Uid="MainColumnVersion" Style="{ThemeResource CaptionTextBlockStyle}" />
+
+                    <TextBlock Grid.Column="3" x:Uid="MainColumnTime" Style="{ThemeResource CaptionTextBlockStyle}" />
+
+                    <TextBlock Grid.Column="4" x:Uid="MainColumnMatchId" Style="{ThemeResource CaptionTextBlockStyle}" />
+
+                    <TextBlock Grid.Column="5" x:Uid="MainColumnUserId" Style="{ThemeResource CaptionTextBlockStyle}" />
+
+                </Grid>
+
+
+
+                <ListView
+
+                    x:Name="MappedList"
+
+                    Grid.Row="2"
+
+                    Style="{StaticResource FluentReplayListStyle}"
+
+                    ItemContainerStyle="{StaticResource FluentReplayListItemStyle}"
+
+                    ItemsSource="{x:Bind ViewModel.MappedReplays, Mode=OneWay}"
+
+                    SelectedItem="{x:Bind ViewModel.SelectedMapped, Mode=TwoWay}"
+
+                    DoubleTapped="MappedGrid_DoubleTapped"
+
+                    AutomationProperties.Name="Mapped replays">
+
+                    <ListView.ItemTemplate>
+
+                        <DataTemplate x:DataType="models:MappedReplay">
+
+                            <Grid ColumnSpacing="12">
+
+                                <Grid.ColumnDefinitions>
+
+                                    <ColumnDefinition Width="{StaticResource ReplayColTimeWidth}" />
+
+                                    <ColumnDefinition Width="{StaticResource ReplayColSlotMatchIdWidth}" />
+
+                                    <ColumnDefinition Width="{StaticResource ReplayColSlotVersionWidth}" />
+
+                                    <ColumnDefinition Width="{StaticResource ReplayColTimeWidth}" />
+
+                                    <ColumnDefinition Width="{StaticResource ReplayColSlotMatchIdWidth}" />
+
+                                    <ColumnDefinition Width="{StaticResource ReplayColUserIdWidth}" />
+
+                                    <ColumnDefinition Width="{StaticResource ReplayColActionWidth}" />
+
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock
+
+                                    Grid.Column="0"
+
+                                    Grid.ColumnSpan="3"
+
+                                    Style="{StaticResource FluentReplayRowTextStyle}"
+
+                                    Text="{x:Bind SlotFileName, Mode=OneWay}"
+
+                                    Visibility="{x:Bind helpers:ReplayDisplayHelper.UnparsedFilenameVisibility(IsSlotParsed), Mode=OneWay}" />
+
+                                <TextBlock
+
+                                    Grid.Column="0"
+
+                                    Style="{StaticResource FluentReplayRowTextStyle}"
+
+                                    Text="{x:Bind helpers:ReplayDisplayHelper.GetDateTimeDisplay(SlotEntry), Mode=OneWay}"
+
+                                    Visibility="{x:Bind helpers:ReplayDisplayHelper.ParsedColumnsVisibility(IsSlotParsed), Mode=OneWay}" />
+
+                                <TextBlock
+
+                                    Grid.Column="1"
+
+                                    Style="{StaticResource FluentReplayRowTextStyle}"
+
+                                    Text="{x:Bind helpers:ReplayDisplayHelper.GetMatchId(SlotEntry), Mode=OneWay}"
+
+                                    Visibility="{x:Bind helpers:ReplayDisplayHelper.ParsedColumnsVisibility(IsSlotParsed), Mode=OneWay}" />
+
+                                <TextBlock
+
+                                    Grid.Column="2"
+
+                                    Style="{StaticResource FluentReplayRowTextStyle}"
+
+                                    Text="{x:Bind helpers:ReplayDisplayHelper.GetGameVersion(SlotEntry), Mode=OneWay}"
+
+                                    Visibility="{x:Bind helpers:ReplayDisplayHelper.ParsedColumnsVisibility(IsSlotParsed), Mode=OneWay}" />
+
+                                <TextBlock
+
+                                    Grid.Column="3"
+
+                                    Grid.ColumnSpan="3"
+
+                                    Style="{StaticResource FluentReplayRowTextStyle}"
+
+                                    Text="{x:Bind helpers:ReplayDisplayHelper.GetFileName(Entry), Mode=OneWay}"
+
+                                    Opacity="0.8"
+
+                                    Visibility="{x:Bind helpers:ReplayDisplayHelper.UnparsedFilenameVisibility(IsTargetParsed), Mode=OneWay}" />
+
+                                <TextBlock
+
+                                    Grid.Column="3"
+
+                                    Style="{StaticResource FluentReplayRowTextStyle}"
+
+                                    Text="{x:Bind helpers:ReplayDisplayHelper.GetDateTimeDisplay(Entry), Mode=OneWay}"
+
+                                    Opacity="0.8"
+
+                                    Visibility="{x:Bind helpers:ReplayDisplayHelper.ParsedColumnsVisibility(IsTargetParsed), Mode=OneWay}" />
+
+                                <TextBlock
+
+                                    Grid.Column="4"
+
+                                    Style="{StaticResource FluentReplayRowTextStyle}"
+
+                                    Text="{x:Bind helpers:ReplayDisplayHelper.GetMatchId(Entry), Mode=OneWay}"
+
+                                    Visibility="{x:Bind helpers:ReplayDisplayHelper.ParsedColumnsVisibility(IsTargetParsed), Mode=OneWay}" />
+
+                                <TextBlock
+
+                                    Grid.Column="5"
+
+                                    Style="{StaticResource FluentReplayRowTextStyle}"
+
+                                    Text="{x:Bind helpers:ReplayDisplayHelper.GetUserId(Entry), Mode=OneWay}"
+
+                                    Visibility="{x:Bind helpers:ReplayDisplayHelper.ParsedColumnsVisibility(IsTargetParsed), Mode=OneWay}" />
+
+                                <Button
+
+                                    Grid.Column="6"
+
+                                    Style="{ThemeResource SubtleButtonStyle}"
+
+                                    Width="32"
+
+                                    Height="32"
+
+                                    Padding="0"
+
+                                    MinWidth="0"
+
+                                    MinHeight="0"
+
+                                    x:Uid="MainDeleteSlotButton"
+
+                                    Click="DeleteSlotButton_Click"
+
+                                    Tag="{x:Bind}">
+
+                                    <SymbolIcon Symbol="Delete" />
+
+                                </Button>
+
+                            </Grid>
+
+                        </DataTemplate>
+
+                    </ListView.ItemTemplate>
+
+                </ListView>
+
+            </Grid>
+
+        </Border>
+
+
+
+        <TextBlock
+
+            Grid.Row="3"
+
+            x:Uid="MainOriginalsHeader"
+
+            Style="{ThemeResource BodyStrongTextBlockStyle}" />
+
+
+
+        <Border Grid.Row="4" Style="{StaticResource FluentReplayCardBorderStyle}">
+
+            <Grid>
+
+                <Grid.RowDefinitions>
+
+                    <RowDefinition Height="Auto" />
+
+                    <RowDefinition Height="*" />
+
+                </Grid.RowDefinitions>
+
+
+
+                <Grid Grid.Row="0" Style="{StaticResource FluentReplayColumnHeaderPanelStyle}">
+
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="{StaticResource ReplayColTimeWidth}" />
+
+                        <ColumnDefinition Width="{StaticResource ReplayColMatchIdWidth}" />
+
+                        <ColumnDefinition Width="{StaticResource ReplayColVersionWidth}" />
+
+                        <ColumnDefinition Width="{StaticResource ReplayColUserIdWidth}" />
+
+                        <ColumnDefinition Width="{StaticResource ReplayColImportedWidth}" />
+
+                        <ColumnDefinition Width="{StaticResource ReplayColActionWidth}" />
+
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" x:Uid="MainColumnTime" Style="{ThemeResource CaptionTextBlockStyle}" />
+
+                    <TextBlock Grid.Column="1" x:Uid="MainColumnMatchId" Style="{ThemeResource CaptionTextBlockStyle}" />
+
+                    <TextBlock Grid.Column="2" x:Uid="MainColumnVersion" Style="{ThemeResource CaptionTextBlockStyle}" />
+
+                    <TextBlock Grid.Column="3" x:Uid="MainColumnUserId" Style="{ThemeResource CaptionTextBlockStyle}" />
+
+                    <TextBlock Grid.Column="4" x:Uid="MainColumnImported" Style="{ThemeResource CaptionTextBlockStyle}" />
+
+                </Grid>
+
+
+
+                <ListView
+
+                    Grid.Row="1"
+
+                    Style="{StaticResource FluentReplayListStyle}"
+
+                    ItemContainerStyle="{StaticResource FluentReplayListItemStyle}"
+
+                    ItemsSource="{x:Bind ViewModel.OriginalEntries, Mode=OneWay}"
+
+                    SelectedItem="{x:Bind ViewModel.SelectedOriginal, Mode=TwoWay}"
+
+                    AutomationProperties.Name="Originals library">
+
+                    <ListView.ItemTemplate>
+
+                        <DataTemplate x:DataType="models:ReplayEntry">
+
+                            <Grid ColumnSpacing="12">
+
+                                <Grid.ColumnDefinitions>
+
+                                    <ColumnDefinition Width="{StaticResource ReplayColTimeWidth}" />
+
+                                    <ColumnDefinition Width="{StaticResource ReplayColMatchIdWidth}" />
+
+                                    <ColumnDefinition Width="{StaticResource ReplayColVersionWidth}" />
+
+                                    <ColumnDefinition Width="{StaticResource ReplayColUserIdWidth}" />
+
+                                    <ColumnDefinition Width="{StaticResource ReplayColImportedWidth}" />
+
+                                    <ColumnDefinition Width="{StaticResource ReplayColActionWidth}" />
+
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock
+
+                                    Grid.Column="0"
+
+                                    Grid.ColumnSpan="4"
+
+                                    Style="{StaticResource FluentReplayRowTextStyle}"
+
+                                    Text="{x:Bind FileName, Mode=OneWay}"
+
+                                    Visibility="{x:Bind helpers:ReplayDisplayHelper.UnparsedFilenameVisibility(IsParsed), Mode=OneWay}" />
+
+                                <TextBlock
+
+                                    Grid.Column="0"
+
+                                    Style="{StaticResource FluentReplayRowTextStyle}"
+
+                                    Text="{x:Bind DateTimeDisplay, Mode=OneWay}"
+
+                                    Visibility="{x:Bind helpers:ReplayDisplayHelper.ParsedColumnsVisibility(IsParsed), Mode=OneWay}" />
+
+                                <TextBlock
+
+                                    Grid.Column="1"
+
+                                    Style="{StaticResource FluentReplayRowTextStyle}"
+
+                                    Text="{x:Bind MatchId, Mode=OneWay}"
+
+                                    Visibility="{x:Bind helpers:ReplayDisplayHelper.ParsedColumnsVisibility(IsParsed), Mode=OneWay}" />
+
+                                <TextBlock
+
+                                    Grid.Column="2"
+
+                                    Style="{StaticResource FluentReplayRowTextStyle}"
+
+                                    Text="{x:Bind GameVersion, Mode=OneWay}"
+
+                                    Visibility="{x:Bind helpers:ReplayDisplayHelper.ParsedColumnsVisibility(IsParsed), Mode=OneWay}" />
+
+                                <TextBlock
+
+                                    Grid.Column="3"
+
+                                    Style="{StaticResource FluentReplayRowTextStyle}"
+
+                                    Text="{x:Bind UserId, Mode=OneWay}"
+
+                                    Visibility="{x:Bind helpers:ReplayDisplayHelper.ParsedColumnsVisibility(IsParsed), Mode=OneWay}" />
+
+                                <TextBlock
+
+                                    Grid.Column="4"
+
+                                    Style="{StaticResource FluentReplayRowTextStyle}"
+
+                                    Text="{x:Bind helpers:ReplayDisplayHelper.FormatImportOnly(IsImportOnly), Mode=OneWay}"
+
+                                    Opacity="0.8" />
+
+                                <Button
+
+                                    Grid.Column="5"
+
+                                    Style="{ThemeResource SubtleButtonStyle}"
+
+                                    Width="32"
+
+                                    Height="32"
+
+                                    Padding="0"
+
+                                    MinWidth="0"
+
+                                    MinHeight="0"
+
+                                    x:Uid="MainDeleteOriginalButton"
+
+                                    Click="DeleteOriginalButton_Click"
+
+                                    Tag="{x:Bind}">
+
+                                    <SymbolIcon Symbol="Delete" />
+
+                                </Button>
+
+                            </Grid>
+
+                        </DataTemplate>
+
+                    </ListView.ItemTemplate>
+
+                </ListView>
+
+            </Grid>
+
+        </Border>
+
+
+
+        <InfoBar
+
+            x:Name="StatusInfoBar"
+
+            Grid.Row="5"
+
+            IsOpen="{x:Bind ViewModel.IsStatusInfoOpen, Mode=OneWay}"
+
+            Message="{x:Bind ViewModel.StatusInfoMessage, Mode=OneWay}"
+
+            Severity="Informational"
+
+            IsClosable="True"
+
+            Closed="StatusInfoBar_Closed" />
+
+    </Grid>
+
+</Page>
+

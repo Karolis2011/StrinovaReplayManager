@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="SetupIntro.Text" xml:space="preserve">
+    <value>Strinova Replay Manager needs permission to create symbolic links in your Demos folder. Enable Developer Mode or restart as administrator.</value>
+  </data>
+  <data name="SetupOpenDevSettingsButton.Content" xml:space="preserve">
+    <value>Open Developer settings</value>
+  </data>
+  <data name="SetupRestartAdminButton.Content" xml:space="preserve">
+    <value>Restart as administrator</value>
+  </data>
+  <data name="SetupRetryButton.Content" xml:space="preserve">
+    <value>Retry</value>
+  </data>
+  <data name="SetupAlwaysElevateCheckbox.Content" xml:space="preserve">
+    <value>Always request administrator on startup</value>
+  </data>
+  <data name="SetupViewOnlyButton.Content" xml:space="preserve">
+    <value>Continue view-only</value>
+  </data>
+  <data name="MainRemapButton.Label" xml:space="preserve">
+    <value>Remap selected</value>
+  </data>
+  <data name="MainImportButton.Label" xml:space="preserve">
+    <value>Import replay</value>
+  </data>
+  <data name="MainSaveAsButton.Label" xml:space="preserve">
+    <value>Save as…</value>
+  </data>
+  <data name="MainCopyReplayButton.Label" xml:space="preserve">
+    <value>Copy replay</value>
+  </data>
+  <data name="MainRefreshButton.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Refresh list</value>
+  </data>
+  <data name="MainDeleteSlotButton.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Delete slot</value>
+  </data>
+  <data name="MainDeleteSlotButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Delete slot</value>
+  </data>
+  <data name="MainDeleteOriginalButton.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Delete library item</value>
+  </data>
+  <data name="MainDeleteOriginalButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Delete library item</value>
+  </data>
+  <data name="MainMappedHeader.Text" xml:space="preserve">
+    <value>Mapped replays (newest first)</value>
+  </data>
+  <data name="MainOriginalsHeader.Text" xml:space="preserve">
+    <value>Originals library — select to save or copy</value>
+  </data>
+  <data name="MainColumnSlotGroup.Text" xml:space="preserve">
+    <value>Slot (in-game)</value>
+  </data>
+  <data name="MainColumnMappedGroup.Text" xml:space="preserve">
+    <value>Points to</value>
+  </data>
+  <data name="MainColumnTime.Text" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="MainColumnMatchId.Text" xml:space="preserve">
+    <value>Match ID</value>
+  </data>
+  <data name="MainColumnVersion.Text" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="MainColumnUserId.Text" xml:space="preserve">
+    <value>User ID</value>
+  </data>
+  <data name="MainColumnMappedMatch.Text" xml:space="preserve">
+    <value>Mapped match</value>
+  </data>
+  <data name="MainColumnMappedTime.Text" xml:space="preserve">
+    <value>Mapped time</value>
+  </data>
+  <data name="MainColumnImported.Text" xml:space="preserve">
+    <value>Imported</value>
+  </data>
+  <data name="RemapSlotSummaryLabel.Text" xml:space="preserve">
+    <value>Slot</value>
+  </data>
+  <data name="RemapMappedSummaryLabel.Text" xml:space="preserve">
+    <value>Currently points to</value>
+  </data>
+  <data name="RemapTargetHeader.Text" xml:space="preserve">
+    <value>Choose new target from Originals library</value>
+  </data>
+  <data name="RemapApplyButton.Label" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="RemapCancelButton.Label" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Message_SetupIntro" xml:space="preserve">
+    <value>Strinova Replay Manager needs permission to create symbolic links in your Demos folder. Enable Developer Mode or restart as administrator.</value>
+  </data>
+  <data name="Message_SetupOpenedDevSettings" xml:space="preserve">
+    <value>Developer settings opened. Enable Developer Mode, then choose Retry.</value>
+  </data>
+  <data name="Message_SetupElevationFailed" xml:space="preserve">
+    <value>Could not restart with administrator rights.</value>
+  </data>
+  <data name="Message_SetupProbing" xml:space="preserve">
+    <value>Checking symlink capability…</value>
+  </data>
+  <data name="Message_SetupProbeFailed" xml:space="preserve">
+    <value>Symlinks are still unavailable. Enable Developer Mode or restart as administrator, then retry.</value>
+  </data>
+  <data name="Message_MainViewOnlyStatus" xml:space="preserve">
+    <value>View-only: select an original to save or copy. Enable symlinks in Setup for full mode.</value>
+  </data>
+  <data name="Message_MainFullModeStatus" xml:space="preserve">
+    <value>Full mode: select an original to save or copy; select a mapped slot to remap.</value>
+  </data>
+  <data name="Message_MainViewOnlyImport" xml:space="preserve">
+    <value>Import requires full mode with symlink support.</value>
+  </data>
+  <data name="Message_IngestStatus" xml:space="preserve">
+    <value>Organized replays: moved {0}, linked {1}.</value>
+  </data>
+  <data name="Message_ImportSuccessHint" xml:space="preserve">
+    <value>Replay imported into Originals library. Remap a game replay slot to use it in-game.</value>
+  </data>
+  <data name="Message_ImportUnparsedSuccess" xml:space="preserve">
+    <value>Replay imported into Originals library. Its file name could not be parsed; it is shown by file name only.</value>
+  </data>
+  <data name="Message_ImportCollisionError" xml:space="preserve">
+    <value>A file with that name already exists in Originals library.</value>
+  </data>
+  <data name="Message_ImportInvalidNameError" xml:space="preserve">
+    <value>Imported file name could not be parsed as a valid replay.</value>
+  </data>
+  <data name="Message_ExportSuccess" xml:space="preserve">
+    <value>Exported {0}.</value>
+  </data>
+  <data name="Message_ExportCancelled" xml:space="preserve">
+    <value>Export cancelled.</value>
+  </data>
+  <data name="Message_ExportFailed" xml:space="preserve">
+    <value>Export failed.</value>
+  </data>
+  <data name="Message_ClipboardSuccess" xml:space="preserve">
+    <value>Copied {0} to clipboard.</value>
+  </data>
+  <data name="Message_ClipboardFailed" xml:space="preserve">
+    <value>Could not copy replay to clipboard.</value>
+  </data>
+  <data name="Message_RemapSlotSummary" xml:space="preserve">
+    <value>{0} · {1}</value>
+  </data>
+  <data name="Message_RemapMappedSummary" xml:space="preserve">
+    <value>{0} · {1}</value>
+  </data>
+  <data name="Message_RemapContext" xml:space="preserve">
+    <value>Remap slot {0}. Currently points to {1}.</value>
+  </data>
+  <data name="Message_RemapSelectTarget" xml:space="preserve">
+    <value>Select a replay from the Originals library.</value>
+  </data>
+  <data name="Message_RemapSuccess" xml:space="preserve">
+    <value>Slot {0} now points to {1}.</value>
+  </data>
+  <data name="Message_RemapFailed" xml:space="preserve">
+    <value>Remap failed: {0}</value>
+  </data>
+  <data name="Message_GameRunningRemapWarning" xml:space="preserve">
+    <value>Strinova is running. Remapping a replay slot that is in use may cause crashes and other issues.</value>
+  </data>
+  <data name="Message_GameRunningRemapConfirmTitle" xml:space="preserve">
+    <value>Strinova is running</value>
+  </data>
+  <data name="Message_GameRunningRemapConfirm" xml:space="preserve">
+    <value>Remapping a replay slot while Strinova is running may cause crashes and other issues. Remap anyway?</value>
+  </data>
+  <data name="Message_DeleteSlotConfirmTitle" xml:space="preserve">
+    <value>Delete slot?</value>
+  </data>
+  <data name="Message_DeleteSlotConfirm" xml:space="preserve">
+    <value>Delete this slot? The original replay won't be deleted. You will be able to remap it to another slot. If you download the replay again using the game client, the slot will be recreated and the duplicate imported into the Originals library.</value>
+  </data>
+  <data name="Message_DeleteOriginalConfirmTitle" xml:space="preserve">
+    <value>Delete from Originals library?</value>
+  </data>
+  <data name="Message_DeleteOriginalConfirm" xml:space="preserve">
+    <value>Old replays can't be redownloaded. Deletion is permanent. Delete this replay from the Originals library?</value>
+  </data>
+  <data name="DialogDeleteButtonText" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DialogCancelButtonText" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="DialogProceedButtonText" xml:space="preserve">
+    <value>Remap anyway</value>
+  </data>
+  <data name="Message_DeleteSlotSuccess" xml:space="preserve">
+    <value>Deleted slot {0}.</value>
+  </data>
+  <data name="Message_DeleteOriginalSuccess" xml:space="preserve">
+    <value>Deleted library item {0}.</value>
+  </data>
+  <data name="Message_DeleteFailed" xml:space="preserve">
+    <value>Delete failed: {0}</value>
+  </data>
+</root>
