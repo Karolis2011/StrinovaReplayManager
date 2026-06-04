@@ -24,6 +24,9 @@ public sealed class AppServices
         Export = new ReplayExportService(Paths, getWindowHandle);
         Clipboard = new ReplayClipboardService(Paths);
         Import = new ReplayImportService(Paths, FileSystem, getWindowHandle);
+        var httpClient = new HttpClient();
+        CloudDownload = new ReplayCloudDownloadService(httpClient);
+        DeletedReplayTracker = new DeletedReplayTracker(Settings);
 
         SetupViewModel = new SetupViewModel(this);
         MainViewModel = new MainViewModel(this);
@@ -55,6 +58,10 @@ public sealed class AppServices
     public IReplayClipboardService Clipboard { get; }
 
     public IReplayImportService Import { get; }
+
+    public IReplayCloudDownloadService CloudDownload { get; }
+
+    public DeletedReplayTracker DeletedReplayTracker { get; }
 
     public SetupViewModel SetupViewModel { get; }
 

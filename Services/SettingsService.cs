@@ -10,6 +10,13 @@ public sealed class SettingsService
     private const string AlwaysElevateValue = "AlwaysElevate";
     private const string AppModeValue = "AppMode";
     private const string ImportOnlyValue = "ImportOnlyFiles";
+    private const string DeletedReplaysValue = "DeletedReplays";
+
+    private static readonly JsonSerializerOptions DeletedReplayJsonOptions = new()
+    {
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        WriteIndented = false,
+    };
 
     public bool LoadAlwaysElevate()
     {
@@ -69,6 +76,31 @@ public sealed class SettingsService
     {
         using var key = Registry.CurrentUser.CreateSubKey(RegistryPath);
         key.DeleteValue(ImportOnlyValue, throwOnMissingValue: false);
+    }
+
+    public IReadOnlyList<DeletedReplaySnapshot> LoadDeletedReplays()
+    {
+        using var key = Registry.CurrentUser.OpenSubKey(RegistryPath);
+        if (key?.GetValue(DeletedReplaysValue) is not string json || string.IsNullOrWhiteSpace(json))
+        {
+            return [];
+        }
+
+        try
+        {
+            return JsonSerializer.Deserialize<List<DeletedReplaySnapshot>>(json, DeletedReplayJsonOptions) ?? [];
+        }
+        catch
+        {
+            return [];
+        }
+    }
+
+    public void SaveDeletedReplays(IReadOnlyList<DeletedReplaySnapshot> snapshots)
+    {
+        using var key = Registry.CurrentUser.CreateSubKey(RegistryPath);
+        var json = JsonSerializer.Serialize(snapshots, DeletedReplayJsonOptions);
+        key.SetValue(DeletedReplaysValue, json, RegistryValueKind.String);
     }
 }
 

@@ -19,6 +19,7 @@ UninstallDisplayIcon={app}\Assets\AppIcon.ico
 Compression=lzma2
 SolidCompression=yes
 WizardStyle=modern
+LicenseFile=..\LICENSE
 ArchitecturesAllowed=x64
 ArchitecturesInstallIn64BitMode=x64
 

@@ -36,6 +36,8 @@
 
             <RowDefinition Height="Auto" />
 
+            <RowDefinition Height="Auto" />
+
         </Grid.RowDefinitions>
 
 
@@ -57,6 +59,28 @@
                 Command="{x:Bind ViewModel.ImportCommand}"
 
                 IsEnabled="{x:Bind ViewModel.IsFullMode, Mode=OneWay}" />
+
+            <AppBarButton
+
+                x:Uid="MainDownloadFromServerButton"
+
+                Icon="Download"
+
+                Command="{x:Bind ViewModel.DownloadFromServerCommand}"
+
+                IsEnabled="{x:Bind ViewModel.CanDownloadFromServer, Mode=OneWay}"
+
+                ToolTipService.ToolTip="{x:Bind ViewModel.DownloadFromServerTooltip, Mode=OneWay}" />
+
+            <AppBarButton
+
+                x:Uid="MainRecoverReplayButton"
+
+                Icon="Repair"
+
+                Command="{x:Bind ViewModel.RecoverReplayCommand}"
+
+                IsEnabled="{x:Bind ViewModel.CanRecoverReplay, Mode=OneWay}" />
 
             <AppBarButton
 
@@ -570,11 +594,23 @@
 
 
 
+        <TextBlock
+
+            Grid.Row="5"
+
+            x:Uid="MainDisclaimer"
+
+            TextWrapping="WrapWholeWords"
+
+            Opacity="0.7"
+
+            Style="{ThemeResource CaptionTextBlockStyle}" />
+
         <InfoBar
 
             x:Name="StatusInfoBar"
 
-            Grid.Row="5"
+            Grid.Row="6"
 
             IsOpen="{x:Bind ViewModel.IsStatusInfoOpen, Mode=OneWay}"
 

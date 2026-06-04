@@ -15,6 +15,8 @@ This app helps you:
 - **Import replays from elsewhere** — Add `.replay` files you received from friends or backups into your library, then map them to a slot.
 - **Share replays** — Export a replay to another folder, or copy it to the clipboard for Discord, email, etc.
 - **Clean up** — Delete an in-game slot (the library copy stays), or permanently remove a replay from your library.
+- **Download from server** — Re-fetch a recent replay from Strinova’s CDN into your Originals library (when still online).
+- **Recover replay** — Restore a replay you recently deleted from the library, if it is still on the server.
 
 On first launch, the app checks whether Windows allows it to create symlinks. If not, you can enable **Developer Mode**, restart as administrator, or continue in **view-only** mode (browse and export, but no remapping or import).
 
@@ -29,6 +31,7 @@ On first launch, the app checks whether Windows allows it to create symlinks. If
 | Live refresh when Demos folder changes | Yes | No |
 | Remap slot → different original | Yes | No |
 | Import `.replay` into library | Yes | No |
+| Download from server / Recover replay | Yes | No |
 | Save as / copy replay | Yes | Yes |
 | Delete slot or library item | Yes | Yes |
 
@@ -38,6 +41,7 @@ Additional behavior:
 - Warns if you remap while Strinova is running (`Strinova-Win64-Shipping`).
 - Marks imported files so they are not auto-linked back into Demos until you remap them manually.
 - Optional “always request administrator on startup” if symlinks require elevation on your system.
+- CDN download uses local vs server filename mapping and HEAD checks; see [docs/replay-cdn-retention.md](docs/replay-cdn-retention.md) for retention research and tuning.
 
 ---
 
@@ -98,7 +102,7 @@ StrinovaReplayManager/
 ├── Models/           ReplayEntry, MappedReplay, AppMode
 ├── Services/         Business logic
 ├── ViewModels/       MVVM bindings
-├── Strings/          Localized UI strings (en-us)
+├── Strings/          Localized UI strings (en-us, zh-cn, ja-jp)
 ├── Styles/           WinUI resource dictionaries
 ├── Setup/            Inno Setup script + build-setup.ps1
 ├── Assets/           Icons and logos
@@ -135,6 +139,35 @@ All commands assume the repository root (`StrinovaReplayManager/`).
 dotnet build
 dotnet run
 ```
+
+### Command-line: display language
+
+Force the UI language for this session (unpackaged builds do not persist the choice). Set **before** the window opens — pass arguments to the app, not to `dotnet` itself.
+
+| Switch | Value |
+|--------|--------|
+| `--lang`, `--language`, `-lang`, `/lang`, `/language` | BCP-47 tag or short alias |
+
+**Supported languages:** `en-us`, `zh-cn`, `ja-jp` (resource folders under `Strings/`).
+
+**Short aliases:** `en` → `en-us`, `zh` → `zh-cn`, `ja` → `ja-jp`.
+
+Examples:
+
+```powershell
+# Published executable
+.\StrinovaReplayManager.exe --lang zh-cn
+
+# dotnet run (note the -- separator)
+dotnet run -- --lang zh
+
+# Inline value
+dotnet run -- --lang=ja-jp
+```
+
+Visual Studio / Cursor: add `commandLineArgs` to the unpackaged profile in `Properties/launchSettings.json`, e.g. `"commandLineArgs": "--lang zh-cn"`.
+
+If Windows is already set to a language the app supports, omit the flag to use the system preference.
 
 ### Release publish (self-contained folder)
 
@@ -193,8 +226,22 @@ Close Strinova before remapping when possible; the app warns if the game process
 
 ---
 
+## License
+
+This project is **free software** under the [GNU General Public License v3.0 or later](LICENSE) (GPL-3.0-or-later).
+
+If you **distribute** this program (or a modified version), you must:
+
+- Provide the **complete corresponding source code** under the same license.
+- **License your changes under GPLv3** so recipients keep the same freedoms.
+- Preserve copyright and license notices.
+
+You may charge no more than the cost of physically conveying a copy, or offer it gratis. See the license for full terms.
+
 ## Disclaimer
 
-This is a third-party tool for managing local Strinova replay files. It is not affiliated with or endorsed by the Strinova developers.
+**Strinova Replay Manager** is an independent, community-maintained tool for managing local Strinova replay files on Windows. It is **not** affiliated with, endorsed by, sponsored by, or approved by **iDreamSky** (publisher and developer of *Strinova*) or any official Strinova partners. *Strinova* and related names, logos, and assets are trademarks of their respective owners.
 
-**Old replays cannot be re-downloaded from Strinova.** Once a replay is no longer available through the game client, the only copy you have is the file on your PC. If you delete a replay from the **Originals library**, or lose it in a backup, it is gone permanently — the game will not let you fetch that match again.
+This app is provided **as is**, without warranty. You use it at your own risk. The authors are not responsible for data loss, game issues, or violations of game terms of service.
+
+**Replay availability:** Only **recent** replays may still exist on Strinova’s download servers or through the game client. Older matches often return 404 from the CDN. If you delete a replay from the **Originals library** and it is no longer on the server, recovery may be impossible — keep backups of matches you care about.

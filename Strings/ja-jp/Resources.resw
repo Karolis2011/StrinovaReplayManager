@@ -76,11 +76,26 @@
   <data name="SetupViewOnlyButton.Content" xml:space="preserve">
     <value>表示のみで続行</value>
   </data>
+  <data name="SetupDisclaimer.Text" xml:space="preserve">
+    <value>独立したフリーソフトウェア（GNU GPL v3）。配布する改変版は同じライセンスでソースを公開する必要があります。Strinovaの発売・開発元であるiDreamSkyとは提携・後援・公式承認の関係はありません。Strinovaおよび関連商標は各権利者に帰属します。</value>
+  </data>
+  <data name="MainDisclaimer.Text" xml:space="preserve">
+    <value>iDreamSky（Strinovaの発売・開発元）とは無関係です。GNU GPL v3のフリーソフト — 配布時はソースと改変を同ライセンスで共有してください。</value>
+  </data>
   <data name="MainRemapButton.Label" xml:space="preserve">
     <value>選択項目をリマップ</value>
   </data>
   <data name="MainImportButton.Label" xml:space="preserve">
     <value>リプレイをインポート</value>
+  </data>
+  <data name="MainDownloadFromServerButton.Label" xml:space="preserve">
+    <value>サーバーからダウンロード</value>
+  </data>
+  <data name="MainRecoverReplayButton.Label" xml:space="preserve">
+    <value>リプレイを復元</value>
+  </data>
+  <data name="MainRecoverReplayButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>最近オリジナルライブラリから削除したリプレイを復元</value>
   </data>
   <data name="MainSaveAsButton.Label" xml:space="preserve">
     <value>名前を付けて保存…</value>
@@ -242,7 +257,64 @@
     <value>オリジナルライブラリから削除しますか？</value>
   </data>
   <data name="Message_DeleteOriginalConfirm" xml:space="preserve">
-    <value>古いリプレイは再ダウンロードできません。削除は元に戻せません。このリプレイをオリジナルライブラリから削除しますか？</value>
+    <value>オリジナルライブラリからこのリプレイを削除しますか？Strinovaサーバーに残っている場合は「リプレイを復元」で戻せます。古い対戦はオンラインで利用できない場合があります。</value>
+  </data>
+  <data name="DialogRecoverButtonText" xml:space="preserve">
+    <value>復元</value>
+  </data>
+  <data name="DialogReplaceButtonText" xml:space="preserve">
+    <value>置き換え</value>
+  </data>
+  <data name="Message_RecoverReplayDialogTitle" xml:space="preserve">
+    <value>リプレイを復元</value>
+  </data>
+  <data name="Message_RecoverReplayDialogSubtitle" xml:space="preserve">
+    <value>ライブラリから削除したリプレイを選んでください。Strinovaサーバーに残っているものだけダウンロードできます。</value>
+  </data>
+  <data name="Message_RecoverReplayDeletedAt" xml:space="preserve">
+    <value>削除日時 {0}</value>
+  </data>
+  <data name="Message_CloudReplaceConfirmTitle" xml:space="preserve">
+    <value>ライブラリファイルを置き換えますか？</value>
+  </data>
+  <data name="Message_CloudReplaceConfirm" xml:space="preserve">
+    <value>オリジナルライブラリの {0} をサーバーのコピーで置き換えますか？</value>
+  </data>
+  <data name="Message_CloudDownloadChecking" xml:space="preserve">
+    <value>サーバーを確認中…</value>
+  </data>
+  <data name="Message_CloudDownloadAvailable" xml:space="preserve">
+    <value>Strinovaサーバーから新しいコピーをダウンロード</value>
+  </data>
+  <data name="Message_CloudDownloadNotOnServer" xml:space="preserve">
+    <value>このリプレイはStrinovaサーバーにありません</value>
+  </data>
+  <data name="Message_CloudDownloadTooOld" xml:space="preserve">
+    <value>対戦から30日以上経過。サーバー上のコピーはない可能性があります（未確認）</value>
+  </data>
+  <data name="Message_CloudDownloadUnparsed" xml:space="preserve">
+    <value>標準的なStrinovaリプレイのファイル名ではありません</value>
+  </data>
+  <data name="Message_CloudDownloadProbeFailed" xml:space="preserve">
+    <value>リプレイサーバーに接続できません。接続を確認してください。</value>
+  </data>
+  <data name="Message_CloudDownloadUnavailable" xml:space="preserve">
+    <value>サーバーで利用できません</value>
+  </data>
+  <data name="Message_CloudDownloadViewOnly" xml:space="preserve">
+    <value>シンボリックリンク対応のフルモードが必要です</value>
+  </data>
+  <data name="Message_CloudDownloadInProgress" xml:space="preserve">
+    <value>サーバーからダウンロード中…</value>
+  </data>
+  <data name="Message_CloudDownloadSuccess" xml:space="preserve">
+    <value>サーバーから {0} をダウンロードしました。</value>
+  </data>
+  <data name="Message_CloudDownloadFailed" xml:space="preserve">
+    <value>サーバーからのダウンロードに失敗しました。</value>
+  </data>
+  <data name="Message_CloudDownloadCancelled" xml:space="preserve">
+    <value>ダウンロードをキャンセルしました。</value>
   </data>
   <data name="DialogDeleteButtonText" xml:space="preserve">
     <value>削除</value>

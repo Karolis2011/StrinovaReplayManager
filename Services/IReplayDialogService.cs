@@ -1,4 +1,5 @@
 using Microsoft.UI.Xaml;
+using StrinovaReplayManager.Models;
 
 namespace StrinovaReplayManager.Services;
 
@@ -11,4 +12,8 @@ public interface IReplayDialogService
     Task<bool> ConfirmDeleteAsync(string title, string content);
 
     Task<bool> ConfirmProceedAsync(string title, string content);
+
+    Task<bool> ConfirmReplaceAsync(string title, string content);
+
+    Task<DeletedReplaySnapshot?> PickRecoveryAsync(IReadOnlyList<DeletedReplaySnapshot> items);
 }

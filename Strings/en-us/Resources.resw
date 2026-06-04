@@ -76,11 +76,26 @@
   <data name="SetupViewOnlyButton.Content" xml:space="preserve">
     <value>Continue view-only</value>
   </data>
+  <data name="SetupDisclaimer.Text" xml:space="preserve">
+    <value>Independent free software (GNU GPL v3). Modifications you distribute must stay open source under the same license. Not affiliated with or endorsed by iDreamSky, the publisher and developer of Strinova. Strinova and related marks are property of their respective owners.</value>
+  </data>
+  <data name="MainDisclaimer.Text" xml:space="preserve">
+    <value>Not affiliated with iDreamSky (Strinova publisher/developer). Free software under GNU GPL v3 — share source and license changes if you distribute it.</value>
+  </data>
   <data name="MainRemapButton.Label" xml:space="preserve">
     <value>Remap selected</value>
   </data>
   <data name="MainImportButton.Label" xml:space="preserve">
     <value>Import replay</value>
+  </data>
+  <data name="MainDownloadFromServerButton.Label" xml:space="preserve">
+    <value>Download from server</value>
+  </data>
+  <data name="MainRecoverReplayButton.Label" xml:space="preserve">
+    <value>Recover replay</value>
+  </data>
+  <data name="MainRecoverReplayButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Restore a replay you recently removed from the Originals library</value>
   </data>
   <data name="MainSaveAsButton.Label" xml:space="preserve">
     <value>Save as…</value>
@@ -242,7 +257,64 @@
     <value>Delete from Originals library?</value>
   </data>
   <data name="Message_DeleteOriginalConfirm" xml:space="preserve">
-    <value>Old replays can't be redownloaded. Deletion is permanent. Delete this replay from the Originals library?</value>
+    <value>Delete this replay from the Originals library? Replays kept on Strinova servers may be restored with Recover replay. Older matches may no longer be available online.</value>
+  </data>
+  <data name="DialogRecoverButtonText" xml:space="preserve">
+    <value>Recover</value>
+  </data>
+  <data name="DialogReplaceButtonText" xml:space="preserve">
+    <value>Replace</value>
+  </data>
+  <data name="Message_RecoverReplayDialogTitle" xml:space="preserve">
+    <value>Recover replay</value>
+  </data>
+  <data name="Message_RecoverReplayDialogSubtitle" xml:space="preserve">
+    <value>Choose a replay you deleted from the Originals library. Only items still on Strinova servers can be downloaded.</value>
+  </data>
+  <data name="Message_RecoverReplayDeletedAt" xml:space="preserve">
+    <value>Deleted {0}</value>
+  </data>
+  <data name="Message_CloudReplaceConfirmTitle" xml:space="preserve">
+    <value>Replace library file?</value>
+  </data>
+  <data name="Message_CloudReplaceConfirm" xml:space="preserve">
+    <value>Replace {0} in the Originals library with the copy from the server?</value>
+  </data>
+  <data name="Message_CloudDownloadChecking" xml:space="preserve">
+    <value>Checking server…</value>
+  </data>
+  <data name="Message_CloudDownloadAvailable" xml:space="preserve">
+    <value>Download a fresh copy from Strinova servers</value>
+  </data>
+  <data name="Message_CloudDownloadNotOnServer" xml:space="preserve">
+    <value>This replay is no longer on Strinova servers</value>
+  </data>
+  <data name="Message_CloudDownloadTooOld" xml:space="preserve">
+    <value>Match is older than 30 days; server copy is unlikely (not checked)</value>
+  </data>
+  <data name="Message_CloudDownloadUnparsed" xml:space="preserve">
+    <value>File name is not a standard Strinova replay name</value>
+  </data>
+  <data name="Message_CloudDownloadProbeFailed" xml:space="preserve">
+    <value>Could not reach the replay server. Check your connection.</value>
+  </data>
+  <data name="Message_CloudDownloadUnavailable" xml:space="preserve">
+    <value>Replay is not available on the server</value>
+  </data>
+  <data name="Message_CloudDownloadViewOnly" xml:space="preserve">
+    <value>Requires full mode with symlink support</value>
+  </data>
+  <data name="Message_CloudDownloadInProgress" xml:space="preserve">
+    <value>Downloading from server…</value>
+  </data>
+  <data name="Message_CloudDownloadSuccess" xml:space="preserve">
+    <value>Downloaded {0} from server.</value>
+  </data>
+  <data name="Message_CloudDownloadFailed" xml:space="preserve">
+    <value>Download from server failed.</value>
+  </data>
+  <data name="Message_CloudDownloadCancelled" xml:space="preserve">
+    <value>Download cancelled.</value>
   </data>
   <data name="DialogDeleteButtonText" xml:space="preserve">
     <value>Delete</value>

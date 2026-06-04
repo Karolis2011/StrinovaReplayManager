@@ -32,6 +32,11 @@
             <Button
                 x:Uid="SetupViewOnlyButton"
                 Command="{x:Bind ViewModel.ContinueViewOnlyCommand}" />
+            <TextBlock
+                x:Uid="SetupDisclaimer"
+                TextWrapping="WrapWholeWords"
+                Opacity="0.75"
+                Style="{ThemeResource CaptionTextBlockStyle}" />
         </StackPanel>
     </ScrollViewer>
 </Page>

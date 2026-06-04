@@ -76,11 +76,26 @@
   <data name="SetupViewOnlyButton.Content" xml:space="preserve">
     <value>以仅查看模式继续</value>
   </data>
+  <data name="SetupDisclaimer.Text" xml:space="preserve">
+    <value>独立自由软件（GNU GPL v3）。若分发修改版，须以相同许可证公开源代码。与 Strinova 的发行商及开发商 iDreamSky 无关联、未获认可或赞助。Strinova 及相关标识归各自权利人所有。</value>
+  </data>
+  <data name="MainDisclaimer.Text" xml:space="preserve">
+    <value>与 iDreamSky（Strinova 发行商/开发商）无关联。GNU GPL v3 自由软件 — 分发时须共享源代码并以相同许可证发布修改。</value>
+  </data>
   <data name="MainRemapButton.Label" xml:space="preserve">
     <value>重新映射所选</value>
   </data>
   <data name="MainImportButton.Label" xml:space="preserve">
     <value>导入回放</value>
+  </data>
+  <data name="MainDownloadFromServerButton.Label" xml:space="preserve">
+    <value>从服务器下载</value>
+  </data>
+  <data name="MainRecoverReplayButton.Label" xml:space="preserve">
+    <value>恢复回放</value>
+  </data>
+  <data name="MainRecoverReplayButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>恢复最近从原始库删除的回放</value>
   </data>
   <data name="MainSaveAsButton.Label" xml:space="preserve">
     <value>另存为…</value>
@@ -242,7 +257,64 @@
     <value>从原始库中删除？</value>
   </data>
   <data name="Message_DeleteOriginalConfirm" xml:space="preserve">
-    <value>旧回放无法重新下载。删除是永久性的。确定要从原始库中删除此回放吗？</value>
+    <value>确定要从原始库中删除此回放吗？若回放仍在 Strinova 服务器上，可使用“恢复回放”找回。较旧的对局可能已无法在线获取。</value>
+  </data>
+  <data name="DialogRecoverButtonText" xml:space="preserve">
+    <value>恢复</value>
+  </data>
+  <data name="DialogReplaceButtonText" xml:space="preserve">
+    <value>替换</value>
+  </data>
+  <data name="Message_RecoverReplayDialogTitle" xml:space="preserve">
+    <value>恢复回放</value>
+  </data>
+  <data name="Message_RecoverReplayDialogSubtitle" xml:space="preserve">
+    <value>选择从原始库删除的回放。仅仍可在线获取的项目可以下载。</value>
+  </data>
+  <data name="Message_RecoverReplayDeletedAt" xml:space="preserve">
+    <value>删除于 {0}</value>
+  </data>
+  <data name="Message_CloudReplaceConfirmTitle" xml:space="preserve">
+    <value>替换库文件？</value>
+  </data>
+  <data name="Message_CloudReplaceConfirm" xml:space="preserve">
+    <value>用服务器上的副本替换原始库中的 {0}？</value>
+  </data>
+  <data name="Message_CloudDownloadChecking" xml:space="preserve">
+    <value>正在检查服务器…</value>
+  </data>
+  <data name="Message_CloudDownloadAvailable" xml:space="preserve">
+    <value>从 Strinova 服务器下载新副本</value>
+  </data>
+  <data name="Message_CloudDownloadNotOnServer" xml:space="preserve">
+    <value>此回放已不在 Strinova 服务器上</value>
+  </data>
+  <data name="Message_CloudDownloadTooOld" xml:space="preserve">
+    <value>对局已超过 30 天，服务器上可能已无副本（未检查）</value>
+  </data>
+  <data name="Message_CloudDownloadUnparsed" xml:space="preserve">
+    <value>文件名不是标准 Strinova 回放格式</value>
+  </data>
+  <data name="Message_CloudDownloadProbeFailed" xml:space="preserve">
+    <value>无法连接回放服务器，请检查网络。</value>
+  </data>
+  <data name="Message_CloudDownloadUnavailable" xml:space="preserve">
+    <value>服务器上不可用</value>
+  </data>
+  <data name="Message_CloudDownloadViewOnly" xml:space="preserve">
+    <value>需要支持符号链接的完整模式</value>
+  </data>
+  <data name="Message_CloudDownloadInProgress" xml:space="preserve">
+    <value>正在从服务器下载…</value>
+  </data>
+  <data name="Message_CloudDownloadSuccess" xml:space="preserve">
+    <value>已从服务器下载 {0}。</value>
+  </data>
+  <data name="Message_CloudDownloadFailed" xml:space="preserve">
+    <value>从服务器下载失败。</value>
+  </data>
+  <data name="Message_CloudDownloadCancelled" xml:space="preserve">
+    <value>已取消下载。</value>
   </data>
   <data name="DialogDeleteButtonText" xml:space="preserve">
     <value>删除</value>

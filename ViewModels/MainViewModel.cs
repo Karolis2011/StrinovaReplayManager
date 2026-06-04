@@ -34,6 +34,8 @@ public partial class MainViewModel : ObservableObject
 
     private bool _suppressSelectionSync;
 
+    private CancellationTokenSource? _cloudProbeCts;
+
 
 
     public MainViewModel(AppServices services)
@@ -109,7 +111,17 @@ public partial class MainViewModel : ObservableObject
 
     private bool _canCopyReplay;
 
+    [ObservableProperty]
+    private bool _canDownloadFromServer;
 
+    [ObservableProperty]
+    private bool _isCheckingServer;
+
+    [ObservableProperty]
+    private bool _canRecoverReplay;
+
+    [ObservableProperty]
+    private string _downloadFromServerTooltip = string.Empty;
 
     public void Initialize(AppMode mode)
 
@@ -120,6 +132,8 @@ public partial class MainViewModel : ObservableObject
         _services.CurrentMode = mode;
 
         UpdateStatusForMode();
+
+        UpdateRecoverReplayCommand();
 
     }
 
@@ -179,6 +193,10 @@ public partial class MainViewModel : ObservableObject
 
         }
 
+        _cloudProbeCts?.Cancel();
+        _cloudProbeCts?.Dispose();
+        _cloudProbeCts = null;
+
     }
 
 
@@ -232,6 +250,7 @@ public partial class MainViewModel : ObservableObject
 
         try
         {
+            _services.DeletedReplayTracker.RecordDeleted(entry);
             _services.FileSystem.DeleteFile(entry.FilePath);
             SelectedOriginal = null;
 
@@ -239,6 +258,7 @@ public partial class MainViewModel : ObservableObject
             await CleanupBrokenSymlinksAfterOriginalDeletionAsync(entry.FileName).ConfigureAwait(true);
 
             ShowStatusInfo(ResourceStrings.Format("Message_DeleteOriginalSuccess", entry.FileName));
+            UpdateRecoverReplayCommand();
             await RefreshAsync(runIngest: false).ConfigureAwait(true);
         }
         catch (Exception ex)
@@ -437,6 +457,8 @@ public partial class MainViewModel : ObservableObject
 
         UpdateShareCommands();
 
+        _ = ProbeSelectedOriginalAsync(value);
+
     }
 
 
@@ -448,6 +470,10 @@ public partial class MainViewModel : ObservableObject
         CanRemap = SelectedMapped is not null && value;
 
         UpdateStatusForMode();
+
+        UpdateShareCommands();
+
+        UpdateRecoverReplayCommand();
 
     }
 
@@ -463,9 +489,229 @@ public partial class MainViewModel : ObservableObject
 
         CanCopyReplay = canShare;
 
+        if (!IsFullMode || SelectedOriginal is null)
+        {
+            CanDownloadFromServer = false;
+            IsCheckingServer = false;
+            DownloadFromServerTooltip = ResourceStrings.Get("Message_CloudDownloadViewOnly");
+            return;
+        }
+
+        if (IsCheckingServer)
+        {
+            CanDownloadFromServer = false;
+            DownloadFromServerTooltip = ResourceStrings.Get("Message_CloudDownloadChecking");
+        }
     }
 
+    private void UpdateRecoverReplayCommand()
+        => CanRecoverReplay = IsFullMode && _services.DeletedReplayTracker.HasRecoverableEntries;
 
+    [RelayCommand]
+    private async Task DownloadFromServerAsync()
+    {
+        if (!IsFullMode || SelectedOriginal is not { } entry)
+        {
+            return;
+        }
+
+        var destPath = entry.FilePath;
+        if (_services.FileSystem.FileExists(destPath)
+            && new FileInfo(destPath).Length > 0
+            && !await _dialogs.ConfirmReplaceAsync(
+                ResourceStrings.Get("Message_CloudReplaceConfirmTitle"),
+                ResourceStrings.Format("Message_CloudReplaceConfirm", entry.FileName)).ConfigureAwait(true))
+        {
+            return;
+        }
+
+        ShowStatusInfo(ResourceStrings.Get("Message_CloudDownloadInProgress"));
+        var result = await _services.CloudDownload.DownloadAsync(entry, destPath).ConfigureAwait(true);
+        ApplyCloudDownloadResult(result, entry.FileName);
+        if (result == ReplayCloudDownloadResult.Success)
+        {
+            _services.CloudDownload.InvalidateCacheForEntry(entry);
+            await ProbeSelectedOriginalAsync(entry).ConfigureAwait(true);
+            await RefreshAsync(runIngest: false).ConfigureAwait(true);
+        }
+        else if (SelectedOriginal?.FileName == entry.FileName)
+        {
+            await ProbeSelectedOriginalAsync(entry).ConfigureAwait(true);
+        }
+    }
+
+    [RelayCommand]
+    private async Task RecoverReplayAsync()
+    {
+        if (!IsFullMode)
+        {
+            return;
+        }
+
+        var items = _services.DeletedReplayTracker.ListRecoverable();
+        if (items.Count == 0)
+        {
+            UpdateRecoverReplayCommand();
+            return;
+        }
+
+        var picked = await _dialogs.PickRecoveryAsync(items).ConfigureAwait(true);
+        if (picked is null)
+        {
+            return;
+        }
+
+        if (ReplayCloudRetention.ShouldSkipProbe(picked))
+        {
+            ShowStatusInfo(ResourceStrings.Get("Message_CloudDownloadTooOld"));
+            return;
+        }
+
+        var entry = picked.ToReplayEntry(_services.Paths.GetOriginalsPath(picked.FileName));
+        var availability = await _services.CloudDownload.ProbeAsync(picked).ConfigureAwait(true);
+        if (availability != ReplayCloudAvailability.Available)
+        {
+            ApplyCloudAvailabilityMessage(availability);
+            return;
+        }
+
+        var destPath = entry.FilePath;
+        if (_services.FileSystem.FileExists(destPath)
+            && new FileInfo(destPath).Length > 0
+            && !await _dialogs.ConfirmReplaceAsync(
+                ResourceStrings.Get("Message_CloudReplaceConfirmTitle"),
+                ResourceStrings.Format("Message_CloudReplaceConfirm", entry.FileName)).ConfigureAwait(true))
+        {
+            return;
+        }
+
+        ShowStatusInfo(ResourceStrings.Get("Message_CloudDownloadInProgress"));
+        var result = await _services.CloudDownload.DownloadAsync(entry, destPath).ConfigureAwait(true);
+        ApplyCloudDownloadResult(result, entry.FileName);
+        if (result == ReplayCloudDownloadResult.Success)
+        {
+            _services.DeletedReplayTracker.Remove(picked.FileName);
+            UpdateRecoverReplayCommand();
+            await RefreshAsync(runIngest: false).ConfigureAwait(true);
+            ShowStatusInfo(ResourceStrings.Get("Message_ImportSuccessHint"));
+        }
+    }
+
+    private async Task ProbeSelectedOriginalAsync(ReplayEntry? entry)
+    {
+        _cloudProbeCts?.Cancel();
+        _cloudProbeCts?.Dispose();
+        _cloudProbeCts = new CancellationTokenSource();
+        var token = _cloudProbeCts.Token;
+
+        if (!IsFullMode || entry is null)
+        {
+            CanDownloadFromServer = false;
+            IsCheckingServer = false;
+            DownloadFromServerTooltip = ResourceStrings.Get("Message_CloudDownloadViewOnly");
+            return;
+        }
+
+        if (!entry.IsParsed)
+        {
+            CanDownloadFromServer = false;
+            IsCheckingServer = false;
+            DownloadFromServerTooltip = ResourceStrings.Get("Message_CloudDownloadUnparsed");
+            return;
+        }
+
+        if (ReplayCloudRetention.ShouldSkipProbe(entry))
+        {
+            CanDownloadFromServer = false;
+            IsCheckingServer = false;
+            DownloadFromServerTooltip = ResourceStrings.Get("Message_CloudDownloadTooOld");
+            return;
+        }
+
+        IsCheckingServer = true;
+        CanDownloadFromServer = false;
+        DownloadFromServerTooltip = ResourceStrings.Get("Message_CloudDownloadChecking");
+
+        try
+        {
+            var availability = await _services.CloudDownload.ProbeAsync(entry, token).ConfigureAwait(true);
+            if (token.IsCancellationRequested || !ReferenceEquals(SelectedOriginal, entry))
+            {
+                return;
+            }
+
+            ApplyCloudAvailabilityToDownloadButton(availability);
+        }
+        catch (OperationCanceledException)
+        {
+            // Selection changed.
+        }
+        finally
+        {
+            if (!token.IsCancellationRequested && ReferenceEquals(SelectedOriginal, entry))
+            {
+                IsCheckingServer = false;
+            }
+        }
+    }
+
+    private void ApplyCloudAvailabilityToDownloadButton(ReplayCloudAvailability availability)
+    {
+        switch (availability)
+        {
+            case ReplayCloudAvailability.Available:
+                CanDownloadFromServer = IsFullMode;
+                DownloadFromServerTooltip = ResourceStrings.Get("Message_CloudDownloadAvailable");
+                break;
+            case ReplayCloudAvailability.NotFound:
+                CanDownloadFromServer = false;
+                DownloadFromServerTooltip = ResourceStrings.Get("Message_CloudDownloadNotOnServer");
+                break;
+            case ReplayCloudAvailability.TooOld:
+                CanDownloadFromServer = false;
+                DownloadFromServerTooltip = ResourceStrings.Get("Message_CloudDownloadTooOld");
+                break;
+            case ReplayCloudAvailability.NotApplicable:
+                CanDownloadFromServer = false;
+                DownloadFromServerTooltip = ResourceStrings.Get("Message_CloudDownloadUnparsed");
+                break;
+            case ReplayCloudAvailability.ProbeFailed:
+                CanDownloadFromServer = false;
+                DownloadFromServerTooltip = ResourceStrings.Get("Message_CloudDownloadProbeFailed");
+                break;
+            default:
+                CanDownloadFromServer = false;
+                DownloadFromServerTooltip = ResourceStrings.Get("Message_CloudDownloadUnavailable");
+                break;
+        }
+    }
+
+    private void ApplyCloudAvailabilityMessage(ReplayCloudAvailability availability)
+    {
+        var key = availability switch
+        {
+            ReplayCloudAvailability.NotFound => "Message_CloudDownloadNotOnServer",
+            ReplayCloudAvailability.TooOld => "Message_CloudDownloadTooOld",
+            ReplayCloudAvailability.NotApplicable => "Message_CloudDownloadUnparsed",
+            ReplayCloudAvailability.ProbeFailed => "Message_CloudDownloadProbeFailed",
+            _ => "Message_CloudDownloadUnavailable",
+        };
+        ShowStatusInfo(ResourceStrings.Get(key));
+    }
+
+    private void ApplyCloudDownloadResult(ReplayCloudDownloadResult result, string fileName)
+    {
+        var message = result switch
+        {
+            ReplayCloudDownloadResult.Success => ResourceStrings.Format("Message_CloudDownloadSuccess", fileName),
+            ReplayCloudDownloadResult.NotFound => ResourceStrings.Get("Message_CloudDownloadNotOnServer"),
+            ReplayCloudDownloadResult.TooOld => ResourceStrings.Get("Message_CloudDownloadTooOld"),
+            ReplayCloudDownloadResult.NotApplicable => ResourceStrings.Get("Message_CloudDownloadUnparsed"),
+            ReplayCloudDownloadResult.Cancelled => ResourceStrings.Get("Message_CloudDownloadCancelled"),
+            _ => ResourceStrings.Get("Message_CloudDownloadFailed"),
+        };
+        ShowStatusInfo(message);
+    }
 
     private void OnWatcherChanged(object? sender, EventArgs e)
 
@@ -546,6 +792,8 @@ public partial class MainViewModel : ObservableObject
             UpdateStatusForMode();
 
         }
+
+        UpdateRecoverReplayCommand();
 
     }
 
